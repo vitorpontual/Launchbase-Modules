@@ -2,43 +2,12 @@
   "instructors": [
     {
       "id": 1,
-      "avatar_url": "https://data.google.com",
-      "name": "data data",
-      "birth": "08071991",
+      "avatar_url": "http://go.com",
+      "name": "teste",
+      "birth": "2000-02-02",
       "gender": "M",
-      "services": "Crossfit, Dado"
-    },
-    {
-      "id": 2,
-      "avatar_url": "http://google.com",
-      "name": "Donaire Done",
-      "birth": "1960-12-03",
-      "gender": "M",
-      "services": "Musculação, Natação"
-    },
-    {
-      "id": 3,
-      "avatar_url": "http://google.com",
-      "name": "Donaire Done",
-      "birth": "1960-12-03",
-      "gender": "M",
-      "services": "Musculação, Natação"
-    },
-    {
-      "id": 4,
-      "avatar_url": "http://google.com",
-      "name": "Donaire Done",
-      "birth": "1960-12-03",
-      "gender": "M",
-      "services": "Musculação, Natação"
-    },
-    {
-      "id": 5,
-      "avatar_url": "http://google.com",
-      "name": "Teste Done",
-      "birth": "1999-07-08",
-      "gender": "M",
-      "services": "Teste, Data"
+      "services": "Acompanhamento, Teste",
+      "created_at": 1597609161561
     }
   ]
 }
