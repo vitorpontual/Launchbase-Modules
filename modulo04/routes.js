@@ -1,4 +1,5 @@
 const express = require('express')
+const instructors = require('./instructors')
 const app = express.Router()
 
 app.get("/", (req, res) => {
@@ -8,6 +9,12 @@ app.get("/", (req, res) => {
 app.get("/instructors", (req, res) => {
    return res.render("instructors/index")
 })
+
+app.get("/instructors/create", (req, res) => {
+   return res.render("instructors/create")
+})
+
+app.post("/instructors", instructors.post)
 
 app.get("/members", (req, res) => {
    return res.send("Members")
