@@ -12,9 +12,10 @@ exports.post = (req, res) => {
       }
    }
 
-   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+   fs.writeFile('data.json', JSON.stringify(req.body), (err) => {
       if(err) return res.send('Write File error!')
+
+   return res.redirect('/instructors')
    })
 
-   return res.render('/instructors')
 } 
