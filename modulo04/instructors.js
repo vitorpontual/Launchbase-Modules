@@ -1,4 +1,20 @@
-// create
-exports.post = function(req, res) {
-   return res.redirect("/instructors")
-}
+const fs = require('fs')
+
+// create 
+
+exports.post = (req, res) => {
+
+   const keys = Object.keys(req.body)
+
+   for( key in keys ) {
+      if(req.body[key] == '') {
+	 return res.send('Please, fill all fields')
+      }
+   }
+
+   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+      if(err) return res.send('Write File error!')
+   })
+
+   return res.render('/instructors')
+} 
