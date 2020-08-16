@@ -1,5 +1,8 @@
 const fs = require('fs')
 const data = require('./data')
+const { age, date } = require("./utils")
+const Intl = require("intl")
+
 // create 
 
 exports.post = (req, res) => {
@@ -50,8 +53,9 @@ exports.show = (req, res) => {
 
    const instructor = {
       ...foundInstructor,
-      age: "",
-      services: foundInstructor.services.split(",")
+      age: age(foundInstructor.birth),
+      services: foundInstructor.services.split(","),
+      created_at: new Intl.DateTimeFormat("pt-BR").format(foundInstructor.created_at)
    }
 
    return res.render(`instructors/show`, {instructor })

@@ -1,6 +1,6 @@
 module.exports = {
    age: (timestamp) => {
-      const toda = new Date()
+      const today = new Date()
       const birthDate = new Date(timestamp)
 
       let age = today.getFullYear() - birthDate.getFullYear()
