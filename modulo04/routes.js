@@ -22,6 +22,8 @@ app.post("/instructors", instructors.post)
 
 app.put("/instructors", instructors.put)
 
+app.delete("/instructors", instructors.delete)
+
 app.get("/members", (req, res) => {
    return res.send("Members")
 })
