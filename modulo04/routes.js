@@ -16,9 +16,7 @@ app.get("/instructors/create", (req, res) => {
 
 app.get("/instructors/:id", instructors.show)
 
-app.get("/instructors/:id/edit", (req, res) => {
-   return res.render('instructors/edit')
-})
+app.get("/instructors/:id/edit", instructors.edit)
 
 app.post("/instructors", instructors.post)
 

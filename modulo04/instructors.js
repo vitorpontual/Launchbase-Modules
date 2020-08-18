@@ -60,3 +60,20 @@ exports.show = (req, res) => {
 
    return res.render(`instructors/show`, {instructor })
 }
+
+// edit 
+
+exports.edit = (req, res) => {
+
+   const { id } = req.params
+
+   const foundInstructor = data.instructors.find((instructor) => {
+      return id == instructor.id
+   })
+
+   if(!foundInstructor) return res.send('Instructor not found')
+
+   
+
+   return res.render(`instructors/edit`, {instructor: foundInstructor})
+}
