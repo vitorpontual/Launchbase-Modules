@@ -20,6 +20,8 @@ app.get("/instructors/:id/edit", instructors.edit)
 
 app.post("/instructors", instructors.post)
 
+app.put("/instructors", instructors.put)
+
 app.get("/members", (req, res) => {
    return res.send("Members")
 })
