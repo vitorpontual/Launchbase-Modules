@@ -16,6 +16,10 @@ app.get("/instructors/create", (req, res) => {
 
 app.get("/instructors/:id", instructors.show)
 
+app.get("/instructors/:id/edit", (req, res) => {
+   return res.render('instructors/edit')
+})
+
 app.post("/instructors", instructors.post)
 
 app.get("/members", (req, res) => {
