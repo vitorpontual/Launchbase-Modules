@@ -2,26 +2,22 @@
 
 {% block content %}
    <div class="card">
-      <section class="avatar" style="background: url(https://source.unsplash.com/collection/8353395/500x500) no-repeat center center/ cover"></section>
-      <section class="details">
-	 <div class="item">
-	    <div>Instrutor</div>
-	    <div>Gilherme Saraiva</div>
-	 </div>
-	 <div class="item">
-	    <div>Sexo</div>
-	    <div>Masculino</div>
-	 </div>
-	 <div class="item">
-	    <div>Acompanhamento</div>
-	    <div>
-	       <span>Musculação</span>
-	       <span>Crossfit</span>
-	    </div>
-	 </div>
-	 <div class="item">
-	    <div>Desde</div>
-	    <div>10/03/2019</div>
-	 </div>
+      <table width='100%'>
+	 <thead>
+	    <tr>
+	       <th>Instrutor</th>
+	       <th>Atendimento</th>
+	       <th>Ação</th>
+	    </tr>
+	 </thead>
+	 <tbody>
+	    {% instructor in instructors %}
+	    <tr>
+	       <td>{{instructor.name}}</td>
+	       <td>{{instructor.serivces}}</td>
+	       <td><a href="http://"></a></td>
+	    </tr>
+	 </tbody>
+      </table>
    </div>
 {% endblock content %}
