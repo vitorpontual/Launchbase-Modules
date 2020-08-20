@@ -1,12 +1,17 @@
 const fs = require('fs')
-const data = require('./data')
-const { age, date } = require("./utils")
+const data = require('../data')
+const { age, date } = require("../utils")
 const Intl = require("intl")
 
 exports.index = (req, res) => {
    return res.render('instructors/index', {instructors : data.instructors})
 }
-// create 
+
+exports.create = (req, res) => {
+   return res.render('instructors/create')
+}
+
+// post
 
 exports.post = (req, res) => {
 
