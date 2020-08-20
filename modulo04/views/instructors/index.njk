@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-   <div class="card">
+   <div class="card table-container">
       <table width='100%'>
 	 <thead>
 	    <tr>
@@ -11,12 +11,13 @@
 	    </tr>
 	 </thead>
 	 <tbody>
-	    {% instructor in instructors %}
+	    {% for instructor in instructors %}
 	    <tr>
 	       <td>{{instructor.name}}</td>
-	       <td>{{instructor.serivces}}</td>
-	       <td><a href="http://"></a></td>
+	       <td>{{instructor.services}}</td>
+	       <td><a href="/instructors/{{instructor.id}}">ver</a></td>
 	    </tr>
+	    {% endfor %}
 	 </tbody>
       </table>
    </div>

@@ -6,9 +6,7 @@ app.get("/", (req, res) => {
    return res.redirect('/instructors')
 })
 
-app.get("/instructors", (req, res) => {
-   return res.render("instructors/index")
-})
+app.get("/instructors", instructors.index)
 
 app.get("/instructors/create", (req, res) => {
    return res.render("instructors/create")
