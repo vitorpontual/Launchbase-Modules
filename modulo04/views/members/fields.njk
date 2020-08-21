@@ -25,7 +25,7 @@
    <div><input 
       type="email" 
       name="email" 
-      value="{{member.name}}">
+      value="{{member.email}}">
    </div>
 </div>
 <div class="item">
@@ -62,7 +62,8 @@
 <div class="item">
    <div>Tipo Sanguíneo</div>
    <div>
-      <select>
+      <select name="blood">
+	 <option disabled>Qual seu tipo Sanguíneo?</option>
 	 <option value="A1"
 		 {% if member.blood == "A1" %}selected{% endif %}
 	 >A+</option>
@@ -94,7 +95,7 @@
 <div class="item">
    <div>Peso (kg)</div>
    <div>
-      <input type="number" name='weight' valeu='{{member.weight}}'>
+      <input type="number" name='weight' value='{{member.weight}}'>
    </div>
 </div>
 
@@ -102,8 +103,8 @@
 <div class="item">
    <div>Altura (cm)</div>
    <div>
-      <input type="number" name='height' valeu='{{member.height}}'>
+      <input type="number" name='height' value='{{member.height}}'>
    </div>
 </div>
 
-<button type="submit">Salvar</button>
+   <button type="submit">Salvar</button>

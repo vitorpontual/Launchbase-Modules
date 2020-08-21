@@ -1,14 +1,25 @@
 {
   "members": [
     {
+      "id": 1,
       "avatar_url": "https://images.unsplash.com/photo-1544133782-b62779394064?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
       "name": "Coruja",
       "email": "coruja@corujao.com",
       "birth": 189129600000,
       "gender": "M",
+      "blood": "O0",
       "weight": "101",
-      "height": "165",
-      "id": 1
+      "height": "190"
+    },
+    {
+      "id": 2,
+      "birth": "2020-08-13",
+      "avatar_url": "https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1    .2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
+      "name": "VITOR PONTUAL QUEIROGA GUEDES",
+      "email": "vtispontual@gmail.com",
+      "gender": "M",
+      "weight": "1",
+      "height": "1"
     }
   ],
   "instructors": [

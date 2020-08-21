@@ -1,6 +1,6 @@
 const fs = require('fs')
 const data = require('../data')
-const { age, date } = require("../utils")
+const { age, date, bloodType } = require("../utils")
 const Intl = require("intl")
 
 // index
@@ -8,7 +8,6 @@ const Intl = require("intl")
 exports.index = (req, res) => {
    return res.render('members/index', {members : data.members})
 }
-
 // create
 
 exports.create = (req, res) => {
@@ -37,9 +36,9 @@ exports.post = (req, res) => {
    }
 
    data.members.push({
-      ...req.body,
       id,
-      birth
+      birth,
+      ...req.body
       
    })
 
@@ -63,10 +62,11 @@ exports.show = (req, res) => {
 
    const member = {
       ...foundMember,
-      age: age(foundMember.birth),
+      birth: date(foundMember.birth).birthDay,
+      bloodType: bloodType(foundMember.blood)
    }
-
-   return res.render(`members/show`, {member})
+      return res.render(`members/show`, {member})
+   
 }
 
 // edit 
@@ -83,7 +83,7 @@ exports.edit = (req, res) => {
    
    const member = {
       ...foundMember,
-      birth: date(foundMember.birth)
+      birth: date(foundMember.birth).iso
    }
    return res.render(`members/edit`, {member})
 }
