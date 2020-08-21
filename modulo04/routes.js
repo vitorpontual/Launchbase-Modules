@@ -14,7 +14,7 @@ app.post("/instructors", instructors.post)
 app.put("/instructors", instructors.put)
 app.delete("/instructors", instructors.delete)
 
-app.get("/members", instructors.index)
+app.get("/members",members.index)
 app.get("/members/create", members.create)
 app.get("/members/:id", members.show)
 app.get("/members/:id/edit", members.edit)
