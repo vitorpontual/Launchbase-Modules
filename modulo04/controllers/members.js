@@ -19,7 +19,7 @@ exports.post = (req, res) => {
 
    const keys = Object.keys(req.body)
 
-   for( key in keys ) {
+   for( key of  keys ) {
       if(req.body[key] == '') {
 	 return res.send('Please, fill all fields')
       }
@@ -127,7 +127,6 @@ exports.delete = (req, res) => {
    const filteredMembers = data.members.filter(function(member){
       return member.id != id
    })
-   console.log(filteredMembers)
     
    data.members = filteredMembers
 
@@ -136,3 +135,5 @@ exports.delete = (req, res) => {
       return res.redirect('/members')
    })
 }
+
+
