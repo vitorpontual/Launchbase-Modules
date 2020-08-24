@@ -134,7 +134,7 @@ header {
 
 /* FORM */
 
-input {
+input, select {
    font-size:18px;
    width: 100%;
    outline: none;
