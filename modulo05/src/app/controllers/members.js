@@ -1,7 +1,7 @@
 const { age, date } = require("../../lib/utils")
 
 
-module.exportes = {
+module.exports = {
    index(req, res){
       return res.render('members/index')
    },
@@ -41,6 +41,8 @@ module.exportes = {
 	    return res.send('Please, fill all fields')
 	 }
       }
+
+      return
    },
 
    delete(req, res){

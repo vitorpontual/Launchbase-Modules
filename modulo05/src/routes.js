@@ -1,6 +1,6 @@
 const express = require('express')
 const instructors = require('./app/controllers/instructors')
-const members = require('./app/>controllers/members')
+const members = require('./app/controllers/members')
 const app = express.Router()
 
 app.get("/", (req, res) => {
