@@ -22,7 +22,7 @@ module.exports = {
       }
 
       Instructor.create(req.body, function(instructor){
-	 return res.redirect('/instructors/${instrucor.id}')
+	 return res.redirect(`/instructors/${instructor.id}`)
       })
 
 
@@ -42,8 +42,14 @@ module.exports = {
    },
 
    edit(req, res){
-     
-      return
+      Instructor.find(req.params.id, function(instructor){
+	 if(!instructor) return res.send('Instructor not found')
+
+	 instructor.birth = date(instructor.birth).iso
+	 console.log(instructor.birth)
+
+	 return res.render('instructors/edit', {instructor})
+      })
    },
    put(req, res){
 
@@ -54,7 +60,10 @@ module.exports = {
 	    return res.send('Please, fill all fields')
 	 }
       }
-      return
+
+      Instructor.update(req.body, function(){
+	 return res.redirect(`/instructors/${req.body.id}`)
+      })
 
    },
    delete(req, res){
