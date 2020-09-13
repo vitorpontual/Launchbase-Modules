@@ -40,4 +40,16 @@ module.exports = {
 
       })
    },
+   find(id, callback) {
+	db.query(`
+	 SELECT *
+	 FROM instructors 
+	 WHERE id = $1`,
+	   [id], function(err, results){
+	      if(err) res.send('Database Error!')
+	      console.log([id])
+
+	      callback(results.rows[0])
+	   })
+   }
 }
