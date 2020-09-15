@@ -36,6 +36,7 @@ module.exports = {
 
 	 instructor.created_at = date(instructor.created_at).format
 
+	 console.log(instructor)
 	 return res.render('instructors/show', {instructor})
       })
      
@@ -46,8 +47,8 @@ module.exports = {
 	 if(!instructor) return res.send('Instructor not found')
 
 	 instructor.birth = date(instructor.birth).iso
-	 console.log(instructor.birth)
 
+	 console.log(instructor)
 	 return res.render('instructors/edit', {instructor})
       })
    },
@@ -56,12 +57,13 @@ module.exports = {
       const keys= Object.keys(req.body)
 
       for(key of keys){
-	 if(req.body[key] = ''){
+	 if(req.body[key] == ''){
 	    return res.send('Please, fill all fields')
 	 }
       }
 
       Instructor.update(req.body, function(){
+	 console.log(req.body)
 	 return res.redirect(`/instructors/${req.body.id}`)
       })
 
