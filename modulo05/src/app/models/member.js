@@ -11,26 +11,29 @@ module.exports = {
       })
    },
    create(data, callback) {
-
       const query = `
 	 INSERT INTO members (
 	    name,
 	    avatar_url,
+	    email,
 	    gender,
-	    services,
 	    birth,
-	    created_at
-	 ) VALUES ($1, $2, $3, $4, $5, $6)
+	    blood,
+	    weight,
+	    height
+	 ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 	 RETURNING id
       `
 
       const values = [
 	 data.name,
 	 data.avatar_url,
+	 data.email,
 	 data.gender,
-	 data.services,
-	 date(data.birth).iso,
-	 date(Date.now()).iso
+	 data.birth,
+	 data.blood,
+	 data.weight,
+	 data.height
       ]
 
       console.log(values)
@@ -56,19 +59,25 @@ module.exports = {
    update(data, callback) {
       const query = `
       	UPDATE members SET
-	   avatar_url = ($1),
-	   name = ($2),
-	   birth = ($3),
-	   gender = ($4),
-	   services = ($5)
-	WHERE id = $6
+	   avatar_url=($1),
+	   name=($2),
+	   birth=($3),
+	   gender=($4),
+	   email=($5),
+	   blood=($6),
+	   weight=($7),
+	   height=($8)
+	WHERE id = $9
       `
       const values = [
 	 data.avatar_url,
 	 data.name,
 	 date(data.birth).iso,
 	 data.gender,
-	 data.services,
+	 data.email,
+	 data.blood,
+	 data.weight,
+	 data.height,
 	 data.id
       ]
 
