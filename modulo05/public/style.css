@@ -254,3 +254,13 @@ tbody td .table-services {
    font-size: 12px;
 
 }
+
+tbody tr td:nth-child(3) span{
+    padding: 8px 16px;
+    background-color: #16001e;
+    border-radius: 16px;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    margin-top: 8px
+}
