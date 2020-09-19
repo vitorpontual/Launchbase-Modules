@@ -12,6 +12,7 @@ module.exports = {
 
       Member.instructorSelectOptions(function(options){
 
+	 console.log(options)
 	 return res.render('members/create', {instructorOption: options})
       })
    },
@@ -50,8 +51,10 @@ module.exports = {
 
 	 member.birth = date(member.birth).iso
 
-	 console.log(member)
-	 return res.render('members/edit', {member})
+	 Member.instructorSelectOptions(function(options){
+	    return res.render('members/edit', {member, instructorOption: options})
+	 })
+
       })
    },
    put(req, res){
