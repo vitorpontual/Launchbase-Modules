@@ -36,7 +36,6 @@ module.exports = {
 
 	 instructor.created_at = date(instructor.created_at).format
 
-	 console.log(instructor)
 	 return res.render('instructors/show', {instructor})
       })
      
@@ -48,7 +47,6 @@ module.exports = {
 
 	 instructor.birth = date(instructor.birth).iso
 
-	 console.log(instructor)
 	 return res.render('instructors/edit', {instructor})
       })
    },
@@ -63,7 +61,6 @@ module.exports = {
       }
 
       Instructor.update(req.body, function(){
-	 console.log(req.body)
 	 return res.redirect(`/instructors/${req.body.id}`)
       })
 

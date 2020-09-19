@@ -12,7 +12,6 @@ module.exports = {
 
       Member.instructorSelectOptions(function(options){
 
-	 console.log(options)
 	 return res.render('members/create', {instructorOption: options})
       })
    },
@@ -38,8 +37,6 @@ module.exports = {
 
 	 member.birth = date(member.birth).birthDay
 
-
-	 console.log(member)
 	 return res.render('members/show', {member})
       })
      
@@ -68,7 +65,6 @@ module.exports = {
       }
 
       Member.update(req.body, function(){
-	 console.log(req.body)
 	 return res.redirect(`/members/${req.body.id}`)
       })
 

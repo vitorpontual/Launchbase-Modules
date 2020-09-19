@@ -37,7 +37,7 @@ module.exports = {
 	 data.blood,
 	 data.weight,
 	 data.height,
-	 data.instructor_id
+	 data.instructor
       ]
 
       console.log(values)
@@ -84,7 +84,7 @@ module.exports = {
 	 data.blood,
 	 data.weight,
 	 data.height,
-	 data.instructor_id,
+	 data.instructor,
 	 data.id
       ]
 
