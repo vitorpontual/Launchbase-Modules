@@ -93,6 +93,13 @@ module.exports = {
       db.query(`DELETE FROM members WHERE id = $1`, [id], function(err, results){
 	 callback()
       })
+   },
+   instructorSelectOptions(callback){
+      db.query(`SELECT name, id FROM instructors`, function(err, results){
+	 if (err) throw `Database error! {err}`
+
+	 callback(results.rows)
+      })
    }
 }
 
