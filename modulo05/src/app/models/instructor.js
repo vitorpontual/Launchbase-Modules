@@ -100,6 +100,9 @@ module.exports = {
       db.query(`DELETE FROM instructors WHERE id = $1`, [id], function(err, results){
 	 callback()
       })
+   },
+   paginete(params){
+      
    }
 }
 
