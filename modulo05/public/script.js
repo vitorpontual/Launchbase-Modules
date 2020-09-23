@@ -45,19 +45,19 @@ let elements = ""
 function createPagination(pagination){
    for (let page of pages){
       if(String(page).includes("...")){
-	 elements += `<span>${page}</span`
+	 elements += `<span>${page}</span>`
       } else {
 	 if(filter){
 	    elements += `<a href="?page=${page}&filter=${filter}">${page}</a>`
 	 } else {
-	    elements += `a href="?page=${page}">${page}</a>`
+	    elements += `<a href="?page=${page}">${page}</a>`
 	 }
       }
    }
+   pagination.innerHTML = elements
 }
 
 
-pagination.innerHTML = elements
 
 if (pagination){
    createPagination(pagination)
