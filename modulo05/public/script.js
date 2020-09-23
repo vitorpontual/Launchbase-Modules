@@ -7,7 +7,7 @@ for (item of menuItems) {
    } 
 }
 
-function pagination(selectedPage, totalPages){
+function paginate(selectedPage, totalPages){
    let pages = [],
       oldPage
 
@@ -17,7 +17,6 @@ function pagination(selectedPage, totalPages){
       const pagesBeforeSelectedPage = currentPage  >= selectedPage - 2
 
       if(firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage){
-	 console.log(currentPage)
 	 if( oldPage && currentPage - oldPage > 2 ){
 	    pages.push("...")
 	 }
@@ -33,4 +32,33 @@ function pagination(selectedPage, totalPages){
    }
    return pages
 }
-console.log(pagination(7, 10))
+
+const pagination = document.querySelector(".pagination")
+
+const filter = pagination.dataset.filter
+const page = +pagination.dataset.page
+const total = +pagination.dataset.total
+const pages = paginate(page, total)
+
+let elements = ""
+
+function createPagination(pagination){
+   for (let page of pages){
+      if(String(page).includes("...")){
+	 elements += `<span>${page}</span`
+      } else {
+	 if(filter){
+	    elements += `<a href="?page=${page}&filter=${filter}">${page}</a>`
+	 } else {
+	    elements += `a href="?page=${page}">${page}</a>`
+	 }
+      }
+   }
+}
+
+
+pagination.innerHTML = elements
+
+if (pagination){
+   createPagination(pagination)
+}

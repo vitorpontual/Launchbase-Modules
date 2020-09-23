@@ -15,12 +15,17 @@ module.exports = {
 	 limit,
 	 offset,
 	 callback(instructors){
-	    return res.render('instructors/index', { instructors, filter })
+	    const pagination = {
+	       total: Math.ceil(instructors[0].total / limit),
+	       page
+	    }
+	    console.log(pagination)
+	    return res.render('instructors/index', { instructors, pagination, filter })
 
 	 }
       }
 
-      Instructor.paginete(params)
+      Instructor.paginate(params)
       //  if ( filter ) {
       //     Instructor.findBy(filter, function(instructors){
       //        return res.render('instructors/index', { instructors, filter })
