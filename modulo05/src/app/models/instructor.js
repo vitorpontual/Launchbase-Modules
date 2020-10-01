@@ -107,7 +107,7 @@ module.exports = {
       let query = "",
 	 filterQuery = "",
 	 totalQuery = `(
-      	SELECT count(*) instructors
+      	SELECT count(*) FROM instructors
    ) AS total`
 
       if (filter) {
