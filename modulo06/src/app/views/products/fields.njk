@@ -21,7 +21,7 @@
      type="text" 
      name='name'
      placeholder='Digite o Título do Anúncio'
-     value='{{produtc.name}}'>
+     value='{{product.name}}'>
    </div>
 </div>
 
@@ -41,6 +41,7 @@
      name='price' 
      placeholder='Preço do Produto'
      onkeydown="Mask.apply(this, 'formatBRL')"
+     value={{product.price}}
      >
    </div>
    {% if product.old_price %}

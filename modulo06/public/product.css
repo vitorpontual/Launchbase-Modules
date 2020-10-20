@@ -84,3 +84,10 @@ form .item select {
    background-size: .65em auto, 100%;
 }
 
+form#form-delete .button {
+   background-color: #DE3B54;
+}
+
+form#form-delete .button:hover {
+   background-color: #98192D;
+}
