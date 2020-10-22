@@ -18,7 +18,6 @@ const Mask = {
 const PhotosUpload = {
    uploadLimit: 6,
    preview: document.querySelector('#photos-preview'),
-
    handleFileInput(event) {
       const { files: fileArr } = event.target
 
@@ -26,13 +25,10 @@ const PhotosUpload = {
 
       Array.from(fileArr).forEach(file => {
 	 const reader = new FileReader()
-
 	 reader.onload = () => {
 	    const image = new Image()
 	    image.src = String(reader.result)
-
 	    const container = PhotosUpload.getContainer(image)
-
 	    PhotosUpload.preview.appendChild(container)
 
 	 }
@@ -56,11 +52,22 @@ const PhotosUpload = {
    getContainer(image){
       const container = document.createElement('div')
       container.classList.add('photo')
-
-      container.onclick = () => alert('remover foto')
-
+      container.onclick = PhotosUpload.removePhoto
       container.appendChild(image)
-
+      container.appendChild(PhotosUpload.getRemoveButton())
       return container
+   },
+   getRemoveButton(){
+      const button = document.createElement('i')
+      button.classList.add('material-icons')
+      button.innerHTML = 'close'
+      return button
+   },
+   removePhoto(event){
+      const photoDiv = event.target.parentNode
+      const photosArray = Array.from(PhotosUpload.preview.children)
+      const index = photosArray.indexOf(photoDiv)
+
+      photoDiv.remove()
    }
 }
