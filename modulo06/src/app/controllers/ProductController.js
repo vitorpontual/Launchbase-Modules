@@ -1,5 +1,6 @@
 const Category = require('../models/Category.js')
 const Product = require('../models/Product.js')
+const File = require('../models/File.js')
 
 const { formatPrice } = require('../../lib/utils.js')
 
@@ -30,10 +31,22 @@ module.exports = {
 	 }
       }
 
+      if (req.files.length == 0)
+	 return res.send('Please, send at least one image')
+
+
+
       let results = await Product.create(req.body)
       const productId = results.rows[0].id
 
-      return res.redirect(`/product/${productsId}`)
+      const filesPromise = req.files.map(file => File.create({...file, product_id: productId}))
+      console.log(filesPromise)
+
+      await Promise.all(filesPromise)
+
+
+
+      return res.redirect(`/products/${productId}`)
 
    },
 
@@ -64,7 +77,6 @@ module.exports = {
 
 
       req.body.price = req.body.price.replace(/\D/g, "")
-      console.log(req.body.price.replace(/\D/g, ""))
 
       if ( req.body.old_price != req.body.price ) {
 	 const oldProduct = await Product.find(req.body.id)

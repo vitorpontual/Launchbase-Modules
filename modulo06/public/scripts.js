@@ -20,6 +20,7 @@ const PhotosUpload = {
    uploadLimit: 6,
    preview: document.querySelector('#photos-preview'),
    files: [],
+
    handleFileInput(event) {
       const { files: fileArr } = event.target
       PhotosUpload.input = event.target 
