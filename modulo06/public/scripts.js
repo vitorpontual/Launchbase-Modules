@@ -51,7 +51,6 @@ const PhotosUpload = {
 
       if (fileArr.length > uploadLimit) {
 	 alert(`Envie no máximo ${uploadLimit} photos`)
-	 event.preventDefault()
 	 return true
       }
 
@@ -65,7 +64,6 @@ const PhotosUpload = {
       const totalPhotos = fileArr.length + photosDiv.length
       if (totalPhotos > uploadLimit){
 	 alert('Você atingiu o limite máximo de photos')
-	 event.preventDefault()
 	 return true
       }
       return false
