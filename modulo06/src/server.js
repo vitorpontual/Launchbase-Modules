@@ -5,6 +5,7 @@ const methodOverride = require('method-override')
 
 const server = express()
 
+server.use(express.json())
 server.use(express.urlencoded({extended : true}))
 server.use(express.static('public'))
 server.use(methodOverride('_method'))
