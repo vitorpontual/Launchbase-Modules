@@ -94,12 +94,14 @@ module.exports = {
 	 `
       }
 
+      console.log(category)
+
 
       filterQuery = `
-	 ${filterQuery} 
+	 ${filterQuery} (
 	 products.name ilike '%${filter}%'
 	 OR products.description ilike '%${filter}%'
-      `
+      )`
 
       // WHERE products.category_id = 1
       // AND products.name ilike ...
