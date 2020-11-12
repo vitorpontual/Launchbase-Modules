@@ -13,6 +13,7 @@ section.form {
 
    max-width: 700px;
    width: 90%;
+
 }
 
 section.form .header h3 {
@@ -56,6 +57,10 @@ form .item select {
 
    font-size: 16px;
    outline-style: none;
+
+
+   position: relative;
+   z-index: 100;
 }
 
 
@@ -113,4 +118,24 @@ form .item span input[type='radio']{
 .form input[name='cpf_cnpj'],
 .form input[name='email']{
    max-width: 60%;
+}
+
+/* VALIDATE ERRORS */
+
+.input .error{
+   position: fixed;
+   z-index: 1;
+   background-color: #e74c3c;
+   padding: 4px;
+   border-radius: 4px;
+   color: white;
+   width: 270px;
+   text-align: center;
+   animation: up 200ms ease-out;
+   }
+
+@keyframes up {
+   from {
+      transform: translateY(-30px);
+   }
 }
