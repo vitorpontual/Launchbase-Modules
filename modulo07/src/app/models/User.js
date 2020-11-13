@@ -27,6 +27,7 @@ module.exports = {
 	    data.address
 	 ]
 	 const results = await db.query(query, values)
+	 console.log(results.rows)
 	 return results.rows[0].id
       }catch(err){
 	 console.log(err)
@@ -48,5 +49,28 @@ module.exports = {
 
       const results = await db.query(query)
       return results.rows[0]
+   },
+   async update(id, fields){
+      let query = `
+      UPDATE users SET
+      `
+      Object.keys(fields).map((key, index, array) => {
+	 if((index + 1) < array.length) {
+	    query = `
+	    ${query}
+	    ${key}='${fields[key]}',
+	    `
+	 } else {
+	    // last iteration
+	    query = `
+	    ${query}
+	    ${key}='${fields[key]}'
+	    WHERE id = ${id}
+	    `
+	 }
+      })
+
+      await db.query(query)
+      return
    }
 }
