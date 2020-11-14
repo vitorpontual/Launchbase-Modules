@@ -124,6 +124,7 @@ form .item span input[type='radio']{
 
 .input .error{
    position: fixed;
+   top: 290px;
    z-index: 1;
    background-color: #e74c3c;
    padding: 4px;
@@ -131,11 +132,14 @@ form .item span input[type='radio']{
    color: white;
    width: 270px;
    text-align: center;
-   animation: up 200ms ease-out;
-   }
 
-@keyframes up {
-   from {
-      transform: translateY(-30px);
+   animation: emailmessage 400ms 5s ease-out forwards;
+
+}
+
+@keyframes emailmessage {
+   to {
+      top: 260px;
    }
 }
+
