@@ -3,7 +3,7 @@
 }
 .accounts ul.submenu {
    position: absolute;
-   top: 0;
+   top: -15px;
    left: 0;
 
    margin-top: 8px;
@@ -50,7 +50,7 @@
 }
 
 .accounts:hover .submenu {
-   top: 24px;
+   top: -4px;
    opacity: 1;
    visibility: initial;
 }

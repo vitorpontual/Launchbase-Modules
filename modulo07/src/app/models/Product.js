@@ -27,7 +27,7 @@ module.exports = {
 
       const values = [
 	 data.category_id,
-	 data.user_id || 1,
+	 data.user_id,
 	 data.name,
 	 data.description,
 	 data.price,
@@ -70,11 +70,7 @@ module.exports = {
       return db.query(query, values)
    },
    delete(id) {
-      return db.query(
-	 `
-	 DELETE FROM products WHERE id = $1
-	 `, [id]
-      )
+      return db.query(`DELETE FROM products WHERE id = $1`,[id])
    },
    files(id) {
       return db.query(`
