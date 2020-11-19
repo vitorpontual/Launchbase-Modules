@@ -17,6 +17,7 @@ CREATE TABLE "categories" (
   "name" text NOT NULL
 );
 
+
 CREATE TABLE "files" (
   "id" SERIAL PRIMARY KEY,
   "name" text,
@@ -79,4 +80,21 @@ CREATE TABLE 'session'(
    "expire" timestamp(6) NOT NULL
 )
 WITH (OIDS=FALSE);
-ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid")
+ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+-- token password recovery
+ALTER TABLE "users" ADD COLUMN reset_token text;
+ALTER TABLE "users" ADD COLUMN reset_token_expires text;
+
+-- cascade effect when delete user and products
+
+ALTER TABLE "products"
+DROP CONSTRAINT products_user_id_fkey,
+ADD CONSTRAINT products_user_id_fkey
+FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "files"
+DROP CONSTRAINT files_product_id_fkey,
+ADD CONSTRAINT files_product_id_fkey 
+FOREIGN KEY ("product_id") REFERENCES "products" ("id")
+ON DELETE CASCADE;

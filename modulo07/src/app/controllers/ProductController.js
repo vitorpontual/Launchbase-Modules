@@ -38,7 +38,6 @@ module.exports = {
       const productId = results.rows[0].id
 
       const filesPromise = req.files.map(file => File.create({ ...file, product_id: productId }))
-      console.log(filesPromise)
 
       await Promise.all(filesPromise)
 
@@ -93,7 +92,6 @@ module.exports = {
          ...file,
          src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
       }))
-      console.log(files)
 
       return res.render('products/edit', { product, categories, files })
    },

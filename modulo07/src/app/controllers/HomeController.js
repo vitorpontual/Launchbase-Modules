@@ -30,7 +30,6 @@ module.exports = {
 
 	 const lastAdded = await Promise.all(productPormise)
 
-	 console.log(lastAdded)
 
 
 	 return response.render('home/index', {products: lastAdded})
