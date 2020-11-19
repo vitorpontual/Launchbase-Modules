@@ -105,3 +105,8 @@ dist
 
 # Swp ignore vim
 *.swp
+
+# Images ignore
+*.png
+*.jpeg
+*.jpg

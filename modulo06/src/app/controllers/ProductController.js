@@ -37,7 +37,6 @@ module.exports = {
       const productId = results.rows[0].id
 
       const filesPromise = req.files.map(file => File.create({ ...file, product_id: productId }))
-      console.log(filesPromise)
 
       await Promise.all(filesPromise)
 
@@ -76,6 +75,7 @@ module.exports = {
    async edit(req, res) {
       let results = await Product.find(req.params.id)
       const product = results.rows[0]
+      
 
       if (!product) return res.send('Product not found')
 
@@ -88,11 +88,11 @@ module.exports = {
       // get images
       results = await Product.files(product.id)
       let files = results.rows
+      console.log(files)
       files = files.map(file => ({
          ...file,
          src: `${req.protocol}://${req.headers.host}${file.path.replace('public', '')}`
       }))
-      console.log(files)
 
       return res.render('products/edit', { product, categories, files })
    },
@@ -116,7 +116,6 @@ module.exports = {
 
       if (req.body.removed_files) {
          const removedFiles = req.body.removed_files.split(',')
-	 console.log(removedFiles)
          const lastIndex = removedFiles.length - 1
          removedFiles.splice(lastIndex, 1)
          

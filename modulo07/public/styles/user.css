@@ -54,6 +54,7 @@ form .item select {
 
    box-shadow: 5px 5px 5px -4px rgba(63,63,63,0.2);
    border-radius: 4px;
+   border: 1px solid #eee;
 
    font-size: 16px;
    outline-style: none;
