@@ -1,0 +1,146 @@
+
+/* Product Form*/
+
+section.form {
+   background-color: white;
+
+   padding: 32px 24px;
+   margin: 32px auto;
+
+   box-shadow: 5px 5px 5px -4px rgba(60, 60, 60, 0.5);
+   border: 1px solid #efefef;
+   border-radius: 4px;
+
+   max-width: 700px;
+   width: 90%;
+
+}
+
+section.form .header h3 {
+   font-size: 14px;
+   line-height: 24px;
+   letter-spacing: 0.7px;
+   text-transform: uppercase;
+
+   font-weight: bold;
+   color: var(--primary-color);
+
+   margin-bottom: 16px;
+}
+
+
+/* Product Fields */
+
+form .item {
+   margin-bottom: 16px;
+}
+
+form .item > div:first-child {
+   color: #777;
+   text-transform: uppercase;
+   font-size: 14px;
+   font-weight: bold;
+
+   margin-bottom: 8px 
+}
+
+form .item .input input,
+form .item input[type='text'],
+form .item input[type='number'],
+form .item textarea,
+form .item select {
+   width: 100%;
+   padding: 8px 16px;
+
+   box-shadow: 5px 5px 5px -4px rgba(63,63,63,0.2);
+   border-radius: 4px;
+   border: 1px solid #eee;
+
+   font-size: 16px;
+   outline-style: none;
+
+
+   position: relative;
+   z-index: 100;
+}
+
+
+form .item textarea {
+   min-height: 150px;
+   resize: none;
+}
+
+form .fields {
+   margin-bottom: 64px;
+}
+
+form .item span {
+   padding: 8px 16px;
+   background-color: var(--primary-color);
+   border-radius: 16px;
+   color: white;
+   margin-right: 4px;
+   margin-top: 8px;
+   display: inline-block;
+   font-weight: bold;
+   text-transform: uppercase;
+   font-size: 12px;
+}
+
+form .item span input[type='radio']{
+   vertical-align: middle;
+   margin-right: 4px;
+}
+.button.edit {
+   background-color: var(--secondary-color)
+}
+
+.button.edit:hover {
+   background-color: #065ac1;
+}
+
+.button.delete {
+   background-color: lightgray;
+}
+.button.delete:hover {
+   background-color: #98192D;
+}
+
+/* USER REGISTER */
+
+.user-register.container.form {
+   max-width: 500px;
+
+}
+
+.form input[name='cep'],
+.form input[name='password'],
+.form input[name='passwordRepeat'],
+.form input[name='cpf_cnpj'],
+.form input[name='email']{
+   max-width: 60%;
+}
+
+/* VALIDATE ERRORS */
+
+.input .error{
+   position: fixed;
+   top: 290px;
+   z-index: 1;
+   background-color: #e74c3c;
+   padding: 4px;
+   border-radius: 4px;
+   color: white;
+   width: 270px;
+   text-align: center;
+
+   animation: emailmessage 400ms 5s ease-out forwards;
+
+}
+
+@keyframes emailmessage {
+   to {
+      top: 260px;
+   }
+}
+
