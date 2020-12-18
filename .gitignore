@@ -105,6 +105,7 @@ dist
 
 # Swp ignore vim
 *.swp
+*.swo
 
 # Images ignore
 *.png

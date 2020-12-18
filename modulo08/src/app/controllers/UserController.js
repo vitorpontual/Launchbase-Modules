@@ -1,4 +1,8 @@
+const { unlinkSync }= require('fs')
+const { hash } = require('bscryptjs')
+
 const User = require('../models/User')
+const Product = require('../modeles/Product')
 const { formatCep, formatCpfCnpj } = require('../../lib/utils')
 
 module.exports = {
@@ -6,23 +10,42 @@ module.exports = {
       return res.render('users/register')
    },
    async post(req, res){
+      try{
+	 let { name, email, password, cpf_cnpj, cep, address } = req.body
 
-      const userId = await User.create(req.body)
+	 password = await hash(password, 8)
+	 cpf_cnpj = cpf_cnpj.replace(/\D/g, '')
+	 cep = cep.replace(/\D/g, ''):w
 
+	 const userId = await User.create({
+	    name,
+	    email,
+	    password,
+	    cpf_cnpj,
+	    cep,
+	    address
+	 })
 
-      req.session.userId = userId
+	 req.session.userId = userId
 
+	 return res.redirect('/users')
+      }catch(err){
+	 console.error(err)
+      }
 
-
-      return res.redirect('/users')
    },
    show(req, res){
-      const { user } = req
+      try{
+	 const { user } = req
 
-      user.cpf_cnpj = formatCpfCnpj(user.cpf_cnpj)
-      user.cep = formatCep(user.cep)
+	 user.cpf_cnpj = formatCpfCnpj(user.cpf_cnpj)
+	 user.cep = formatCep(user.cep)
 
-      return res.render('users/index', { user })
+	 return res.render('users/index', { user })
+      }catch(err){
+	 console.error(err)
+      }
+    
    },
    async put(req, res){
       try{
@@ -53,8 +76,29 @@ module.exports = {
    },
    async delete(req, res){
       try{
+	 const products = await Product.findAll({where: {user_id: req.body.id}})
+
+	 // Get all imagens by products
+	 const allFilesPromise = products.map(product => {
+	    Product.files(product.id)
+	 })
+
+	 let promiseResults = await Promise.all(allFilesPromise)
+
+	 // Start remove
 	 await User.delete(req.body.id)
-	 await req.session.destroy()
+	 req.sesion.destroy()
+
+	 // Remove all imagens in public folder
+	 promiseResults.map( results => {
+	    results.rows.map( file => {
+	       try{
+		 unlinkSync(file.path)
+	       }catch(err){
+		  console.error(err)
+	       }
+	    })
+	 })
 
 	 return res.render("session/login", {
 	    sucess:"Account Deleted"

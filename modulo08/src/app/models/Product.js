@@ -1,123 +1,87 @@
-const db = require('../../config/db')
-const fs = require('fs')
+const Base = require('./Base')
+
+Base.init({table: 'products'})
+
 
 module.exports = {
-   all() {
-      return db.query(`
-      SELECT * FROM products
-      ORDER BY updated_at DESC
-      `)
-   },
+   ...Base,
+   async files(id) {
+      try{
+	 const results = await db.query(`
+	    SELECT * FROM files WHERE product_id = $1
+	 `,[id])
 
-   create(data) {
-      const query = `
-      INSERT INTO products (
-      	category_id,
-	user_id,
-	name,
-	description,
-	price,
-	old_price,
-	quantity,
-	status
-      ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
-      RETURNING id
-      `
-
-      data.price = data.price.replace(/\D/g, "")
-
-      const values = [
-	 data.category_id,
-	 data.user_id,
-	 data.name,
-	 data.description,
-	 data.price,
-	 data.old_price || data.price,
-	 data.quantity,
-	 data.status || 1,
-      ]
-
-      return db.query(query, values)
-   },
-   find(id){
-      return db.query(`SELECT * FROM products WHERE id = $1`, [id])
-   },
-   update(data){
-      const query = `
-	 UPDATE products SET
-	    category_id=($1),
-	    name=($2),
-	    description=($3),
-	    old_price=($4),
-	    price=($5),
-	    quantity=($6),
-	    status=($7)
-	 WHERE id = $8
-      `
-
-      const values = [
-	 data.category_id,
-	 data.name, 
-	 data.description,
-	 data.old_price,
-	 data.price,
-	 data.quantity,
-	 data.status,
-	 data.id
-      ]
-
-      return db.query(query, values)
-   },
-   async delete(id) {
-      let results = await db.query(`SELECT * FROM files WHERE product_id = $1`, [id])
-      const files = results.rows
-      files.map(file => {
-	 try{
-	    fs.unlinkSync(file.path)
-	 }catch(err){
-	    console.error(err)
-	 }
-      })
-
-
-      return db.query(`DELETE FROM products WHERE id = $1`,[id])
-   },
-   files(id) {
-      return db.query(`
-	 SELECT * FROM files WHERE product_id = $1
-      `,[id])
-   },
-   search(params){
-      const { filter, category } = params
-
-      let query = "",
-	 filterQuery = `WHERE`
-
-      if (category) {
-	 filterQuery = `${filterQuery}
-	 products.category_id = ${category}
-	 AND
-	 `
+	 return results.rows
+      }catch(err){
+	 console.error(err)
       }
 
-      filterQuery = `
-	 ${filterQuery} (
-	 products.name ilike '%${filter}%'
-	 OR products.description ilike '%${filter}%'
-      )`
+   },
+   async search(params){
+      try{
+	 const { filter, category } = params
 
-      // WHERE products.category_id = 1
-      // AND products.name ilike ...
-      // OR products.description ilike ...
-      
+	 let query = "",
+	    filterQuery = `WHERE`
 
-      query = `
-      SELECT products.*,  categories.name AS category_name
-      FROM products 
-      LEFT JOIN categories ON (categories.id = products.category_id)
-      ${filterQuery}
-      `
+	 if (category) {
+	    filterQuery = `${filterQuery}
+	    products.category_id = ${category}
+	    AND
+	    `
+	 }
 
-      return db.query(query)
-   }
+	 filterQuery = `
+	    ${filterQuery} (
+	    products.name ilike '%${filter}%'
+	    OR products.description ilike '%${filter}%'
+	 )`
+
+	 // WHERE products.category_id = 1
+	 // AND products.name ilike ...
+	 // OR products.description ilike ...
+
+	 query = `
+	 SELECT products.*,  categories.name AS category_name
+	 FROM products 
+	 LEFT JOIN categories ON (categories.id = products.category_id)
+	 ${filterQuery}
+	 `
+	 const results = await db.query(query)
+	 return results.rows
+
+      }catch(err){
+	 console.error(err)
+      }
+   },
 }
+   //   create(data) {
+   //      const query = `
+   //      INSERT INTO products (
+   //      	category_id,
+   //	user_id,
+   //	name,
+   //	description,
+   //	price,
+   //	old_price,
+   //	quantity,
+   //	status
+   //      ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
+   //      RETURNING id
+   //      `
+   //
+   //      data.price = data.price.replace(/\D/g, "")
+   //
+   //      const values = [
+   //	 data.category_id,
+   //	 data.user_id,
+   //	 data.name,
+   //	 data.description,
+   //	 data.price,
+   //	 data.old_price || data.price,
+   //	 data.quantity,
+   //	 data.status || 1,
+   //      ]
+   //
+   //      return db.query(query, values)
+   //   },
