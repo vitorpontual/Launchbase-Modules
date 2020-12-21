@@ -23,12 +23,12 @@ module.exports = {
 
 	 async function getImage(productId) {
 	    let files = await Product.files(productId)
-	    files = files.rows.map(file => `${request.protocol}://${request.headers.host}${file.path.replace('public', '')}`)
+	    files = files.map(file => `${request.protocol}://${request.headers.host}${file.path.replace('public', '')}`)
 
 	    return files[0]
 	 }
 
-	 const productsPromise = products.rows.map(async product => {
+	 const productsPromise = products.map(async product => {
 	    product.img = await getImage(product.id)
 	    product.oldPrice = formatPrice(product.old_price)
 	    product.price = formatPrice(product.price)

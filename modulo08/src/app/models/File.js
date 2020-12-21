@@ -1,4 +1,4 @@
-const Bas = require('./Base')
+const Base = require('./Base')
 
 Base.init({table: 'files'})
 

@@ -1,8 +1,8 @@
 const { unlinkSync }= require('fs')
-const { hash } = require('bscryptjs')
+const { hash } = require('bcryptjs')
 
 const User = require('../models/User')
-const Product = require('../modeles/Product')
+const Product = require('../models/Product')
 const { formatCep, formatCpfCnpj } = require('../../lib/utils')
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
 
 	 password = await hash(password, 8)
 	 cpf_cnpj = cpf_cnpj.replace(/\D/g, '')
-	 cep = cep.replace(/\D/g, ''):w
+	 cep = cep.replace(/\D/g, '')
 
 	 const userId = await User.create({
 	    name,
