@@ -9,7 +9,6 @@ function find(filters, table) {
 
 	 Object.keys(filters[key]).map(field => {
 	    query += ` ${field} = '${filters[key][field]}'`
-	    console.log(query)
 	 })
       })
    }
@@ -60,7 +59,7 @@ const Base = {
 	 return results.rows[0].id
 
       }catch(err){
-	 console.error(error)
+	 console.error(err)
       }
    },
    async update(id, fields){
@@ -68,7 +67,7 @@ const Base = {
 	 let update = []
 
 	 Object.keys(fields).map(key => {
-	    const line = `${key} = '(${fields[key]})'`
+	    const line = `${key} = '${fields[key]}'`
 	    update.push(line)
 	 })
 

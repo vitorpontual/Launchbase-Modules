@@ -79,19 +79,14 @@ module.exports = {
 	 const products = await Product.findAll({where: {user_id: req.body.id}})
 
 	 // Get all imagens by products
-	 const allFilesPromise = products.map(product => {
-	    Product.files(product.id)
-	 })
-
-	 let promiseResults = await Promise.all(allFilesPromise)
+	 const filesPromise = products.map(product => Product.files(product.id))
+	    let promiseResults = await Promise.all(filesPromise)
 
 	 // Start remove
-	 await User.delete(req.body.id)
-	 req.sesion.destroy()
 
 	 // Remove all imagens in public folder
-	 promiseResults.map( results => {
-	    results.rows.map( file => {
+	 promiseResults.map( files => {
+	    files.map( file => {
 	       try{
 		 unlinkSync(file.path)
 	       }catch(err){
@@ -100,10 +95,11 @@ module.exports = {
 	    })
 	 })
 
+	 await User.delete(req.body.id)
+	 req.session.destroy()
 	 return res.render("session/login", {
 	    sucess:"Account Deleted"
 	 })
-
       }catch(err){
 	 console.error(err)
 	 return res.render("users/index", {
