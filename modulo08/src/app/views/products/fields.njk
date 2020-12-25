@@ -70,11 +70,11 @@
      name='price' 
      placeholder='Preço do Produto'
      onkeydown="Mask.apply(this, 'formatBRL')"
-     value={{product.price}}
+     value={{product.formattedPrice}}
      >
    </div>
-   {% if product.old_price %}
-      <input type="hidden" name='old_price' value={{product.old_price}}>
+   {% if product.formattedOldPrice %}
+      <input type="hidden" name='old_price' value={{product.formattedOldPrice}}>
    {%endif%}
 </div>
 
