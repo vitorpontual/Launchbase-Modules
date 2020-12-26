@@ -6,27 +6,19 @@ module.exports = {
    async index(request, response){
       try{
 
-	 let params = {}
 
-	 const { filter, category } = request.query
+	 let { filter, category } = request.query
 
-	 if(!filter) return response.redirect('/')
+	 if(!filter || filter.toLowerCase() == 'toda a loja') filter = null 
 
-	 params.filter = filter
-
-	 if (category) {
-	    params.category = category
-	 }
-
-	 let products = await Product.search(params)
+	 let products = await Product.search({filter, category})
 
 	 const productsPromise = products.map(LoadProductService.format)
-
 
 	 products = await Promise.all(productsPromise)
 
 	 const search = {
-	    term: request.query.filter,
+	    term: filter || 'Toda a loja',
 	    total: products.length
 	 }
 
