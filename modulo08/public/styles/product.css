@@ -216,18 +216,13 @@ form #photos-preview .photo:hover i{
 
 /* PRODUCT VIEW */
 
-section.product-single {
-   background-color: white;
+section.product-single .card-content {
    display: grid;
    grid-template-columns: 1fr 1fr;
    grid-gap: 24px;
 
    padding: 32px 24px;
-   margin: 32px auto;
 
-   box-shadow: 3px 3px 3px 0px rgba(63,63,63,0.5);
-   border: 1px solid #efefef;
-   border-radius:12px;
 }
 
 /* PRODUCT SINGLE GALLERY */
@@ -352,6 +347,7 @@ section.product-single {
 
    padding-top: 8px;
    border-top: 1px solid #eee;
+   margin-top: auto;
 
 }
 
@@ -385,4 +381,6 @@ section.product-single {
    background-color: var(--secondary-hover);
 }
 
-
+section.product-create.form{
+   max-width: 700px;
+}

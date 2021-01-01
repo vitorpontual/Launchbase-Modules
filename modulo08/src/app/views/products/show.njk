@@ -1,10 +1,11 @@
 {% extends '../layout.njk'%}
+{% import 'parts/card.njk' as card%}
 
 {% block style %}
    <link rel="stylesheet" href="/styles/product.css">
 {%endblock%}
 {% block content %}
-   <section class="product-single container">
+   {% call card.render('', 'product-single container')%}
       <div class="gallery">
 	 <div class="highlight">
 	    {% if not files[0]%}
@@ -72,6 +73,6 @@
 	    </div>
 	 </div>
       </div>
-   </section>
+   {%endcall%}
 {% endblock%}
 
